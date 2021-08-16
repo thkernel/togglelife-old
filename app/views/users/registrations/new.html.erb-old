@@ -1,0 +1,33 @@
+<div class="container">
+<div class= "signin-logo">
+<%= image_tag ("logo/logo.jpg"), alt: "FlirtAgenda" %>
+</div>
+<h2 class="h3 mb-3 font-weight-normal">Inscription</h2>
+
+<div class= "form-signin">
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="form-group">
+ 
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "E-mail", class: "form-control", required: true %>
+  </div>
+
+  <div class="form-group">
+    
+    <%= f.password_field :password, autocomplete: "new-password", placeholder: "Mot de passe",  class: "form-control", required: true %>
+  </div>
+
+  <div class="form-group">
+   
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirmation du mot de passe", class: "form-control", required: true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit "S'inscrire", class: "btn btn-lg btn-primary btn-block" %>
+  </div>
+<% end %>
+</div>
+
+<%= render "users/shared/links" %>
+</div>

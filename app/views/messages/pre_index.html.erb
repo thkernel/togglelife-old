@@ -1,0 +1,136 @@
+<div class="container">
+	<div class="spacer">
+	</div>
+	   	<div class="row">
+	    	<div class="col-md-9">
+
+	    		<div class="panel panel-default">
+  					<div class="panel-body">
+
+
+		    			<!-- Left column -->
+		        		<div class="col-md-4">
+							<div class="discussion-list-header">
+								<p>Liste de discussion	</p>
+							</div>
+							<!-- Discussion list -->
+							<div class="discussion-list list-group">
+				        
+				        		<% if @last_unread_conversation.present? %>
+									<% @last_unread_conversation.each do |c| %>
+										<%= link_to(messages_path(id: c), class:"list-group-item")  do %>
+						        	
+												<div class="col-xs-3">
+													<%= image_tag get_user(c.sender_id).thumbnail.url(:medium)  %>
+												</div>
+
+												<div class="col-xs-9">
+													<p class="">
+														<%= user_id_to_name(c.sender_id) %>
+																		
+													</p>
+													<p>
+														<% get_last_message(c.id) %>
+														<% if @last_message.read == false %>
+																<b> <%= @last_message.body %></b>
+															<% else %>
+																<%= @last_message.body %>
+															<% end %>
+													</p>
+														
+												</div>
+											
+
+										<% end %><!-- end -->
+									<% end %>
+								<% end %><!-- end link -->
+
+							</div><!-- end discussion list -->
+						</div>
+
+
+		    			<div class="col-md-8">
+				    		<div class="msgheader">
+				    			<% get_user_image(@conversation.id) %>
+								<%= link_to @recipient.pseudo, profil_path(u: @recipient.id) %>
+				    		</div>
+				    		<div class="row">
+								<div class="discussion-box">
+									<div id="message-box" >
+										<% @messages.each do |m|  %>
+					        				<% @me = m.user_id %>
+					        				<% @conversation_id = m.conversation_id %>
+					        				<% if m.user_id != current_user.id %>
+					        						
+					        					<div class="row" >
+					        						<div class="col-md-1">
+														<div class="recipient-image">
+															<% get_user_image(m.conversation_id) %>
+															<%= image_tag @recipient.thumbnail.url(:medium) %>
+														</div>
+													</div>
+					        						<div class="col-md-11">
+							        					<div class="reception">
+															<div class="message-body">
+																<%= m.body %>
+															</div>
+															<i class="created-at">
+																<%= strtime(m.created_at) %>
+															</i>
+														</div>
+													</div><!-- end col -->
+												</div><!-- end row -->
+													
+											<% else %>
+
+												<div class="row">
+													<div class="col-md-11">
+														<div class="sended">
+															<div class="message-body">
+																<%= m.body %>
+															</div>
+															<i class="created-at">
+																<%= strtime(m.created_at) %>
+															</i>
+														</div>
+													</div><!-- end col -->
+													<div class="col-md-1">
+														<div class="sender-image">
+															<% get_user_image(m.conversation_id) %>
+															<%= image_tag @sender.thumbnail.url(:medium) %>
+														</div>
+													</div><!-- end col -->	
+												</div><!-- end row -->			
+											<% end %>
+										<% end %>
+									</div>
+								</div>
+							</div><!-- end row -->
+
+							<div class="row">
+								<div class="discureply">
+    								<%= form_tag(reply_message_path, method: 'get', remote: true) do  %>
+										<div class="form-group">			
+											<%= text_area_tag :body, params[:body], rows: "3", placeholder: "Votre réponse ici" ,class: "form-controls", required: true %>
+											<%= text_field_tag :recipient_id, params[:recipient_id], value: @me, type: "hidden" %>
+								    		<%= text_field_tag :sender_id, params[:recipient_id], value: current_user.id, type: "hidden" %>
+								    		<%= text_field_tag :user_id, params[:user_id], value: current_user.id, type: "hidden" %>
+								    		<%= text_field_tag :conversation_id, params[:conversation_id], value: @conversation_id, type: "hidden" %>
+								    	</div>
+										<div class="form-group">
+											<%= submit_tag 'Répondre',  class: "btn btn-success pull-right" %>							
+										</div>
+									<% end %>
+								</div> 
+        					</div><!-- row -->
+
+        				</div><!-- col -->
+
+        			</div> <!-- panel -->
+        		</div>
+        	</div>
+        	<div class="col-md-3">
+        	</div>
+    	</div><!-- row -->
+</div><!-- container -->
+        	 

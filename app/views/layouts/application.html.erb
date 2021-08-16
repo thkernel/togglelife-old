@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= APPLICATION_NAME %></title>
+     <%= csrf_meta_tags %>
+     <%= csp_meta_tag %>
+
+  
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag "application", "data-turbo-track": "reload" %>
+
+
+    <%= render 'layouts/partials/google_analytics' %>
+
+
+
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <%= render "layouts/partials/header"%>
+    <%= yield %>
+
+  </body>
+</html>

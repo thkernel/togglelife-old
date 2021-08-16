@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="user-profile-cover">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="user-profile-cover-left-content">
+                                <!-- Avatar -->
+                                <div class="user-avatar">
+                                    <%= user_avatar(@user, "Avatar", "img-fluid rounded-circle-100")%>              
+                                    <% if is_me?(@user) %>
+                                        <div class="choose-profile-thumbnail">
+                                            <%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i> Modifier'), get_profile_thumbnail_path(@user.slug), remote: true %>
+                                        </div>
+                                    <% end %>
+                                </div>
+                            
+                                <!-- Username --->
+                                <div class="user-login">
+                                    <%=  @user.login %> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="user-profile-cover-right-content pull-right">
+                                <% if !is_me?(@user) %>
+                                    <%= link_to raw('<i class="fa fa-comments-o" aria-hidden="true"></i> Message'), send_new_message_path(@user.slug), class: "btn btn-primary", title: "L'envoyer un message", remote: true %>
+                                    <% if is_flirt(@user) == "pending" %>
+                                        <%= link_to raw('<i class="fa fa-user-o" aria-hidden="true"></i> En entente'), remove_flirt_path(@user.slug), class: "btn btn-primary", title: "Demande de flirt en entente" %>
+                                    <% else %>
+                                        <%= link_to raw('<i class="fa fa-user-o" aria-hidden="true"></i> Demande'), send_new_flirt_path(@user.slug), class: "btn btn-primary", title: "L'envoyer une demande de Flirt" %>
+
+                                    <% end %>
+
+                                    <% if is_favori?(@user)%>
+                                        <%= link_to raw('<i class="fa fa-check" aria-hidden="true"></i>Favori'), remove_to_favoris_path(@user.slug), class: "btn btn-primary", title: "Est dans ta liste des favoris" %>
+
+                                    <% else %>
+                                        <%= link_to raw('<i class="fa fa-star-o" aria-hidden="true"></i>Ajouter'), add_to_favoris_path(@user.slug), class: "btn btn-primary", title: "L'ajouter aux favoris" %>
+                                    <% end %>
+                                <% end %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="user-meta-menu">
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

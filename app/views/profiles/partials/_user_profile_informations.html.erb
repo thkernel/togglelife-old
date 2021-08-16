@@ -1,0 +1,45 @@
+<div class="card">
+    <div class="card-header">
+        <div class="pull-left">
+            <strong>Informations</strong>
+        </div>
+        <div class="pull-right">
+            <% if is_me?(@user) %>
+                <%= link_to raw('<i class="fa fa-pencil" aria-hidden="true"></i> Modifier'), get_profile_informations_path(@user.slug), remote: true %>
+            <% end %>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="table-td-title">Nom d'utilisateur:</td><td class="table-td-value"><%= @user.login %></td>
+                        </tr>
+                        <tr>
+                            <td class="table-td-title"> Sexe:</td><td class="table-td-value"><%= @user.profile.gender %></td>
+                        </tr>
+                        <tr>
+                            <td class="table-td-title">Situation matrimoniale:</td><td class="table-td-value"><%= "#{@user.profile.marital_status} " %></td>
+                        </tr>
+                        <tr>
+                            <td class="table-td-title">Âge:</td><td class="table-td-value"><%= "#{user_age(@user.profile.birth_date)}" %></td>
+                        </tr>
+                         <tr>
+                            <td class="table-td-title">Habite à:</td class="table-td-value"><td><%= "#{@user.profile.city}, #{@user.profile.country} " %></td>
+                        </tr>
+                        <tr>
+                            <td class="table-td-title">Orientation sexuelle:</td><td class="table-td-value"><%= "#{@user.profile.sexual_orientation} " %></td>
+                        </tr>
+                       
+                       
+                        <tr>
+                            <td class="table-td-title">Buts:</td><td class="table-td-value"><%= "#{@user.profile.purpose} " %></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

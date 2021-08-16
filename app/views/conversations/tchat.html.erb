@@ -1,0 +1,183 @@
+<div class="spacer"></div>
+<div class="container " >
+    <div class="col-md-9">
+    <div class="chat-wrap">
+        <div id="chat" class="chat" style="height: 230px;">
+            <div class="left-col">
+                <div class="left-cont-contr">
+                    <div class="left-cont-contr-head">
+                        Messages        
+                    </div>
+                    <div class="msg-list-header-order thread-cont-sw">
+                        <div class="msg-list-header-order-sw" data-title="Trier par">
+                            <a data-order="1" class="" do-click="changeOrderThread">non lu</a>
+                            <a data-order="2" class="active" do-click="changeOrderThread">dernier</a>
+                        </div>
+                    </div>
+                    <div class="thread-list-tabs">
+                        <a data-tabs="1" class="thread-list-tab-item active" do-click="changeOrderThread">Tous</a>
+                        <a data-tabs="2" class="thread-list-tab-item" do-click="changeOrderThread">Dialogues</a>
+                    </div>
+                </div>
+
+                <div class="contacts-list-wrap-scroll">
+                    <div class="contacts-list" id="contactListWrapper">            
+                        <div class="contact fast online item_235115811 active" data-id="235115811">
+                            <button class="close" do-click="closeButtonHandler" data-id="235115811"></button>
+                            <div class="cont-type">
+                            </div>
+
+                            <% @current_user_conversations.each do |conversation| %>
+                                <% if conversation.sender_id == current_user.id %>
+
+                                    <%= link_to(conversations_path(:sender_id => conversation.sender_id, :recipient_id => conversation.recipient_id)) do %>
+                                        <div alt="images" class="avatar" title="<%= user_id_to_name(conversation.recipient_id) %>">
+                                            <div class="avatar-placeholder ">
+                                                <%= image_tag get_user(conversation.recipient_id).thumbnail.url(:medium)  %>
+  
+                                            </div>
+                                            <span class="status"></span>
+                                        </div>
+                                        <div class="contact-inner">
+                                            <div class="author">
+                                                <div class="name">
+                                                    <%= user_id_to_name(conversation.recipient_id) %>
+                                                </div>
+
+                                            </div><!-- / author -->
+                                            <div class="contact-message-preview" data-type="1">
+                                                <%= last_message(conversation.id) if last_message(conversation.id).present? %>
+                                            </div>
+                                        </div>
+                                    <% end %>
+                                <% elsif conversation.recipient_id == current_user.id %>
+                                    <%= link_to(conversations_path(:sender_id => conversation.sender_id, :recipient_id => conversation.recipient_id)) do %>
+                                        <div alt="images" class="avatar" title="Jolie Ndiaye">
+                                            <div class="avatar-placeholder ">  
+                                                <%= image_tag get_user(conversation.sender_id).thumbnail.url(:medium)  %>
+
+                                            </div>
+                                            <span class="status"></span>
+                                        </div>
+                                        <div class="contact-inner">
+                                            <div class="author">
+                                                <div class="name">
+                                                    <%= user_id_to_name(conversation.sender_id) %>
+                                                </div>
+
+                                            </div><!-- / author -->
+                                            <div class="contact-message-preview" data-type="1">
+                                                <%= last_message(conversation.id) if last_message(conversation.id).present? %>
+                                            </div>
+                                        </div>
+                                    <% end %>
+
+                                <% end %>
+                            <% end %>
+
+                        </div><!-- / contact -->
+        
+                    </div>
+                </div>
+            </div><!-- / left-col -->
+            <div class="rigt-col">
+                <div class="chat-frame" qa-thread-id="235115811" style="background-image: url('https://static.hitwe.com/common/bg_patterns/2_alpha_icons_pattern.png')">
+                    <div class="contact-details-wrap">
+                        <div class="contact-details-hold">
+                            <div class="contact-details user-info online">
+                                <div class="contact-user-info-group">
+                                    <div class="avatar-big">
+                                        <a href="/u235115811">
+                                            <div class="avatar-placeholder">
+                                                    <% get_user_image(@conversation.id) %>
+
+                                            </div>
+                                        </a>
+                                        <span class="status"></span>
+                                    </div>
+                                    <div class="details">
+                                        <div class="in-chat">in chat</div>
+                                        <%= link_to(profile_path(slug: @recipient.slug, pseudo: @recipient.pseudo)) do %>
+                                            <div class="name">
+                                                <%= @recipient.pseudo  %>
+                                            </div>
+                                        <% end %>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                <div class="chat-area" style="height: 351px;">
+                    <div id="activity" class="activity" async-container-chat="">    
+                        <div class="chat-item-top-placeholder"></div>
+                            <% @conversation_messages.each do |message| %>
+                                <% if message.user_id == current_user.id %>
+                                    <div class="chat-item mine" data-type="1">
+                                        <div class="message">
+                                            <div class="text">
+                                                <%= message.body %>
+                                            </div>
+                                            <div class="message-detail">
+                                                <span>Me</span> | <span>il ya</span>
+                                            </div>
+                                        </div>
+                                        <div class="item-clear">
+                                        </div>
+                                    </div>
+                                <% else %>
+                                    <div class="chat-item " data-type="1">
+                                        <div class="message">
+                                            <div class="text">
+                                                <%= message.body %>
+                                            </div>
+                                            <div class="message-detail">
+                                                <span>Jolie Ndiaye</span> | <span>il y a environ une demi-heure</span>
+                                            </div>
+                                        </div>
+                                        <div class="item-clear"></div>
+                                    </div>
+                                <% end %>
+                            <% end %>
+
+                        </div>
+                    </div>
+                    <div class="chat-form">
+                        <div class="chat-info">
+                            <div class="chat-read-status hidden" do-click="chatStatusElClick" txt-promo="Find out when read?" txt-read="Read" txt-not-read="Delivered" txt-read-time="">
+                            </div>
+                        </div>
+                        <div class="message-error">
+                        </div>
+                        <div id="typing" class="typing"><img src="https://static.hitwe.com/hitwe/images/fresh/fancybox_loading_s.gif">
+                        </div>
+                        <div class="chat-tabs-wrap">
+                            <div class="chat-tab active" id="inp-txt">
+                           
+
+                                <%= form_tag(reply_message_path, method: 'get', remote: true, id:"message-form") do  %>
+                                    <div class="message-wrap">
+                                        <div class="form-group">            
+                                            <%= text_area_tag :body, params[:body], rows: "2", placeholder: "Votre réponse ici" ,class: "form-controls",required: true %>
+                                            <%= text_field_tag :recipient_id, params[:recipient_id], value: @me, type: "hidden" %>
+                                            <%= text_field_tag :sender_id, params[:recipient_id], value: current_user.id, type: "hidden" %>
+                                            <%= text_field_tag :user_id, params[:user_id], value: current_user.id, type: "hidden" %>
+                                            <%= text_field_tag :conversation_id, params[:conversation_id], value: @conversation_id, type: "hidden" %>
+                                        </div>
+                                        <div class="btns-align-right">
+                                            <%= submit_tag 'Répondre',  class: "btn btn-success pull-right" %>                          
+                                        </div>
+                                    </div>
+                                <% end %>
+
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- / chat-form -->
+            </div>        
+        </div>
+    </div>
+    </div>
+    <div class="col-md-3">
+    </div>
+</div>

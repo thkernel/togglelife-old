@@ -1,0 +1,71 @@
+<!-- Fil d'actualité -->
+<div class="newsfeed">
+    <div class="container">
+        <div class="conversation-wrapper">
+			<div class="card">
+				<div class="card-header">
+					
+					<span class="user-avatar">
+						<%= user_avatar(user(@recipient_id), "Avatar", "img-fluid rounded-circle")%>              
+					</span>
+											
+					<!-- Username --->
+					<span class="user-login">
+						<strong><%= user(@recipient_id).login %> </strong>
+					</span>
+				</div>
+				<div class="card-body">
+					<div class="row">
+					
+						<div class="col-md-12">
+							<div class="conversation-content">
+								<% @messages.each do |message| %>
+									<% if message.user_id != current_user.id %>
+										<div class="row">
+											<div class="col-md-12">
+												<span class="user-avatar pull-left">
+													<%= user_avatar(user(@recipient_id), "Avatar", "img-fluid rounded-circle")%>              
+												</span>
+												<span class="message-body pink-bg pull-left">
+													<%= message.body %>
+
+												</span>
+											</div>
+										</div>
+									<% else %>
+										<div class="row">
+											<div class="col-md-12">
+												<p class="message-body blue-bg pull-right">
+													<%= message.body %>
+
+												</p>
+											</div>
+										</div>
+									<% end %>
+								<% end %>
+							</div>
+						</div>
+ 
+                	</div>
+				
+					<div class="c-footer">
+					<div class="row">
+					
+						<div class="col-md-12">
+							<%= form_with(model: @message, url: create_message_path(@recipient_id), local: true) do |form| %>
+								<div class="form-group">
+									<%= form.text_area :body, class: "form-control", placeholder: "Votre message ici!", required: true %>
+								</div>
+								<div class="form-group">
+									<%= form.submit  "Envoyer", class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1 pull-right",  "data-loading-text"=>"Loading...", autocomplete: "off" %>
+								</div>
+							<% end %>
+						</div>
+	
+					</div>
+					</div>
+				</div>
+            </div>
+        </div>
+    </div>
+</div>

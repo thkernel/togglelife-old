@@ -1,0 +1,81 @@
+<!-- Profil sidebar -->
+<div class="profile-sidebar">
+    <!-- Profile sidebar header -->
+    <div class="profile-sidebar-header">
+        <div class="row">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <%= link_to show_my_profile_path(slug: current_user.slug), class: "nav-link" do %>   
+                        <!-- Avatar -->
+                        <span class="user-avatar">
+                            <%= user_avatar(current_user, "Avatar", "img-fluid rounded-circle")%>              
+                        </span>
+                    
+                        <!-- Username --->
+                        <span class="user-login">
+                            <%=  current_user.login %> 
+                        </span>
+                    <% end %>
+                    
+                </li>
+            </ul>
+            
+        </div>
+    </div><!-- end -->
+
+    <!-- Prodile sidebar  !-->
+    <div class="profile-sidebar-body">
+        <!-- Profile sidebar content-first -->
+        <div class="profile-sidebar-content-first">
+            <div class="row">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <%= link_to profile_path, class: "nav-link active" do  %>
+                             <span class="icon">
+                                <i class="fa fa-newspaper-o" aria-hidden="true"></i>                
+                             </span>
+                             <span>Fil d'actualité</span>
+                        <% end %>
+                       
+                    </li>
+
+                    <li class="nav-item">
+                        <%= link_to messages_path, class: "nav-link" do  %>
+                             <span class="icon">
+                                <i class="fa fa-comments-o" aria-hidden="true"></i>                
+                             </span>
+                             <span>Messages</span>
+                        <% end %>
+                       
+                    </li>
+                   
+                   
+                    <li class="nav-item">
+                        <%= link_to favoris_path, class: "nav-link" do  %>
+                             <span class="icon">
+                                <i class="fa fa-star-o" aria-hidden="true"></i>                
+                             </span>
+                             <span>Favoris</span>
+                        <% end %>
+                       
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to profile_path, class: "nav-link" do  %>
+                             <span class="icon">
+                                <i class="fa fa-user-o" aria-hidden="true"></i>                
+                             </span>
+                             <span>Flirts</span>
+                        <% end %>
+                       
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div><!-- end -->
+    <!-- Profile sidebar footer -->
+    <div class="profile-sidebar-footer">
+        <div class="row">
+            <%= render 'layouts/partials/dashboard_footer' %>  
+        </div>     
+    </div>
+</div><!-- end profil sidebar -->

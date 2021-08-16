@@ -1,0 +1,32 @@
+<%= form_with(model: blocking, local: true) do |form| %>
+  <% if blocking.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(blocking.errors.count, "error") %> prohibited this blocking from being saved:</h2>
+
+      <ul>
+      <% blocking.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :sender_id %>
+    <%= form.number_field :sender_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :recipient_id %>
+    <%= form.number_field :recipient_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.text_field :status %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

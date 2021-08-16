@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Sender:</strong>
+  <%= @blocking.sender_id %>
+</p>
+
+<p>
+  <strong>Recipient:</strong>
+  <%= @blocking.recipient_id %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @blocking.status %>
+</p>
+
+<%= link_to 'Edit', edit_blocking_path(@blocking) %> |
+<%= link_to 'Back', blockings_path %>

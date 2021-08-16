@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Flirts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Sender</th>
+      <th>Recipient</th>
+      <th>Status</th>
+      <th></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @flirts.each do |flirt| %>
+      <tr>
+        <td><%= flirt.sender_id %></td>
+        <td><%= flirt.recipient_id %></td>
+        <td><%= flirt.status %></td>
+        <td><%= flirt. %></td>
+        <td><%= link_to 'Show', flirt %></td>
+        <td><%= link_to 'Edit', edit_flirt_path(flirt) %></td>
+        <td><%= link_to 'Destroy', flirt, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Flirt', new_flirt_path %>

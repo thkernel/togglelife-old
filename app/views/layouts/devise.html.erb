@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= APPLICATION_NAME %></title>
+    
+
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag "application", "data-turbo-track": "reload" %>
+
+    <%= render 'layouts/partials/google_analytics' %>
+
+  </head>
+
+  <body>
+  <%= render :partial => 'layouts/partials/flash_messages', :flash => flash %>
+  
+    <!-- Navbar -->
+    <%= render "layouts/partials/header"%>
+  
+    
+    <%= yield %>
+    
+     <!-- Footer -->
+      <% if controller_name == 'registrations' %>
+        <%= render "layouts/partials/home/footer/footer" %>
+        <%= render 'cookies_eu/consent_banner', link: '/cookies' %>
+      <% end %>
+    
+  </body>
+</html>

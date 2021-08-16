@@ -1,0 +1,80 @@
+	<div class="container">
+		<div class="spacer"></div>
+	    <div class="row">
+	    	<div class="col-md-9">
+	    	<div class="panel panel-default">
+  			<div class="panel-body">
+
+
+	    	<!-- Left column -->
+	        <div class="col-md-3">
+				<div class="discussion-list-header">
+					<p>Liste de discussion	</p>
+				</div>
+				<!-- Discussion list -->
+				<div class="discussion-list list-group">
+			        
+			        	<% if @last_unread_conversation.present? %>
+								<% @last_unread_conversation.each do |c| %>
+									<%= link_to(messages_path(id: c), class:"list-group-item")  do %>
+					        	
+											<div class="col-xs-3">
+												<%= image_tag get_user(c.sender_id).thumbnail.url(:medium)  %>
+											</div>
+
+											<div class="col-xs-9">
+												<p class="">
+													<%= user_id_to_name(c.sender_id) %>
+																	
+												</p>
+												<p>
+													<% get_last_message(c.id) %>
+													<% if @last_message.read == false %>
+															<b> <%= @last_message.body %></b>
+														<% else %>
+															<%= @last_message.body %>
+														<% end %>
+												</p>
+													
+											</div>
+										
+
+									<% end %><!-- end -->
+								<% end %>
+						<% end %><!-- end link -->
+
+					  
+				</div>
+				<!-- end discussion list -->
+
+			</div>
+
+
+	    	<div class="col-md-9">
+			    <div class="msgheader">
+			     		
+			    </div>
+			    <div class="row">
+					<div class="discussion-box">
+						<div id="message-box" >
+							<div class="text-center">
+				        		<div class="col-md-9 imgBorders">
+			        				<p class="text-center"><i class="fa fa-envelope clrblue"></i></p>
+			        				<p class="clrblue medium-font text-center ">Bienvenue  dans votre messagerie</p>
+				        		</div>
+				        	</div>
+						</div>
+					</div>
+				</div>
+
+				
+        	</div> 
+        	</div>
+        	</div>
+        	</div> 
+        	<div class="col-md-3">
+        	
+        	</div>
+        </div>
+     </div>	
+        	 

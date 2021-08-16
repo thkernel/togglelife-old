@@ -1,0 +1,64 @@
+<%= form_with(model: profile, url: update_profile_informations_path , local: true) do |form| %>
+ 
+  <div class="modal-body">
+    <ul class="errors">
+    </ul>
+
+  <div class="form-group">
+    <%= form.label :gender %>
+    
+    <%= form.select :gender, User::SEXE,   {prompt: "Je suis un(e)"},  class: "form-control", required: true %>
+
+  </div>
+
+  <div class="form-group">
+    <%= form.label :birth_date %>
+    <%= form.date_field :birth_date, id: :profile_birth_date, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :city %>
+    <%= form.text_field :city, id: :profile_city, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :country %>
+    <%= form.collection_select(:country, ISO3166::Country.countries.sort_by(&:name).collect { |c| [ c.name, "#{c.name}" ] }, :first, :last, {include_blank: 'Pays'}, class: "form-control", 'data-style': 'form-control', required: true) %>													
+
+  </div>
+
+  
+
+  <div class="form-group">
+    <%= form.label :marital_status %>
+   
+    <%= form.select :marital_status, User::MARITAL_STATUS,   {prompt: "Je suis "},  class: "form-control", required: true %>
+
+  </div>
+
+  
+
+
+  <div class="form-group">
+    <%= form.label :sexual_orientation %>
+    <%= form.select :sexual_orientation, User::SEXUAL_ORIENTATION,   {prompt: "Je suis "},  class: "form-control", required: true %>
+  </div>
+
+ 
+
+ 
+
+  
+
+  <div class="form-group">
+    <%= form.label :purpose %>
+        <%= form.select :purpose, User::PURPOSE,   {prompt: "Je veux "},  class: "form-control", required: true %>
+
+  </div>
+
+ </div><!-- modal body -->
+  <div class="modal-footer">
+    <%= link_to "Annuler", "#", class: "btn btn-secondary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1", data: {dismiss: "modal"} %>
+    <%= form.submit  class: "btn btn-primary tx-mont tx-medium tx-11 tx-uppercase pd-y-12 pd-x-25 tx-spacing-1",  "data-loading-text"=>"Loading...", autocomplete: "off" %>
+  </div>
+<% end %>

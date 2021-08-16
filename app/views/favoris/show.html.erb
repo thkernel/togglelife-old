@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Sender:</strong>
+  <%= @favori.sender_id %>
+</p>
+
+<p>
+  <strong>Recipient:</strong>
+  <%= @favori.recipient_id %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @favori.status %>
+</p>
+
+<%= link_to 'Edit', edit_favori_path(@favori) %> |
+<%= link_to 'Back', favoris_path %>

@@ -1,0 +1,41 @@
+<!-- Fil d'actualité -->
+<div class="newsfeed">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <strong>Messages</strong>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="left-conversations-list">
+                            <% @conversations_list.each do |user| %>
+                               
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <%= link_to show_messages_path(SecureRandom.hex, user.slug), class: "nav-link" do %>   
+                                            <!-- Avatar -->
+                                            <span class="user-avatar">
+                                                <%= user_avatar(user, "Avatar", "img-fluid rounded-circle")%>              
+                                            </span>
+                                        
+                                            <!-- Username --->
+                                            <span class="user-login">
+                                                   <%= user.login %> 
+                                            </span>
+                                        <% end %>
+                                        
+                                    </li>
+                                </ul>
+
+                            <% end %>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                    </div>
+ 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+<div class="message-box" >
+										<% @messages.each do |m|  %>
+					        				<% @me = m.user_id %>
+					        				<% @conversation_id = m.conversation_id %>
+					        				<% if m.user_id != current_user.id %>
+					        						
+					        					<div class="row" >
+					        						<div class="col-md-1">
+														<div class="recipient-image">
+															<% get_user_image(m.conversation_id) %>
+															<%= image_tag @recipient.thumbnail.url(:medium) %>
+														</div>
+													</div>
+					        						<div class="col-md-11">
+							        					<div class="reception">
+															<div class="message-body">
+																<%= m.body %>
+															</div>
+															<i class="created-at">
+																<%= strtime(m.created_at) %>
+															</i>
+														</div>
+													</div><!-- end col -->
+												</div><!-- end row -->
+													
+											<% else %>
+
+												<div class="row">
+													<div class="col-md-11">
+														<div class="sended">
+															<div class="message-body">
+																<%= m.body %>
+															</div>
+															<i class="created-at">
+																<%= strtime(m.created_at) %>
+															</i>
+														</div>
+													</div><!-- end col -->
+													<div class="col-md-1">
+														<div class="sender-image">
+															<% get_user_image(m.conversation_id) %>
+															<%= image_tag @sender.thumbnail.url(:medium) %>
+														</div>
+													</div><!-- end col -->	
+												</div><!-- end row -->			
+											<% end %>
+										<% end %>
+										566
+									</div>

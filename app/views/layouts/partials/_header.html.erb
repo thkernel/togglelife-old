@@ -1,0 +1,89 @@
+
+
+<nav class="navbar navbar-expand-md navbar-dark  bg-dark"> <!-- fixed-top -->
+	<div class="container">
+  
+	<div class= "navbar-brand">
+		<% if user_signed_in? %>
+			<%= link_to profile_path do %>
+			<%= image_tag "logo/logo-togglelife-white.png" %> 
+			<% end %>
+
+		<% else %>
+
+			<%= link_to unauthenticated_root_url, class: "navbar-brand" do %>
+				<%= image_tag "logo/logo-togglelife-white.png" %> 
+			<% end %>
+	<% end %>
+  </div>
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav flex-row flex-wrap bd-navbar-nav pt-2 py-md-0">
+    <!-- If login -->
+    <% if current_user %>
+    <!--
+    <form class="form-inline my-2 my-lg-0 header_searchbox">
+      <input class="form-control mr-sm-2" type="search" placeholder="Rechercher" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search" aria-hidden="true"></i>
+      </button>
+    </form> -->
+    <% end %>
+	</ul> 
+	
+	<ul class="navbar-nav flex-row flex-wrap ms-md-auto">
+
+		<% if user_signed_in? %>
+
+			<ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+
+<!-- Messages notifications -->
+<!-- Notifications dropdown -->
+     
+                
+			
+        
+				
+		</ul>
+
+
+	<!-- User Account Menu -->
+
+
+
+
+<ul>
+    <li class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+     <%= user_avatar(current_user, "Avatar", "img-fluid rounded-circle")%>
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <%= link_to "Mon compte" , show_my_profile_path(slug: current_user.slug), class: "dropdown-item" %>
+      <div class="dropdown-divider"></div>
+      <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete,  class: "dropdown-item"  %>
+
+    </div>
+  </li>
+</ul>
+          
+
+	<% else %>
+          <li class="nav-item">
+              <%= link_to "Connexion", new_user_session_path,  class:"btn btn-outline-warning" %>
+            
+          </li>
+          <li class="nav-item">
+            <%= link_to "Inscription", new_user_registration_path,  class:"btn btn-login" %>
+          
+        	</li>
+          
+		 
+		  <% end %>
+		  </ul>
+   
+  </div>
+  </div>
+</nav>

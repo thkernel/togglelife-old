@@ -1,0 +1,45 @@
+<!-- Fil d'actualité -->
+<div class="newsfeed">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <strong>Fil d'actualité</strong>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <% @users.each do |user| %>
+                        <div class="col-md-3">
+                            <div class="user-card" >
+                                <div class="user-card-body">
+                                    <%= link_to  show_his_profile_path(user.slug) do  %>
+                                        <div class="user-thumb">
+                                            <%= user_avatar(user, "Avatar", "")%>
+                                        </div>
+                                    <% end %>
+                                    
+                                    <div class="user-name title-bold title-black">
+                                        <%= link_to "#{user.login.humanize}", show_his_profile_path(user.slug) %>
+                                    </div>
+                                    <div class="user-location title-normal title-black-light">
+                                        <%= "#{user.profile.city }, #{user.profile.country }" %>
+                                    </div>
+                                    <div class="send-flirt">
+                                        <!-- <button class="btn btn-outline-primary">Flirter</button> -->
+                                    </div>
+                                </div> 
+                                <div class="user-card-footer">
+                                </div>
+                            </div>
+                        </div>
+                    <% end %>
+                   
+                </div>
+                <div class="row page-navi">
+                    
+                    <%= will_paginate @users, previous_label: "Précédent", next_label: "Suivant",  renderer: BootstrapPagination::Rails %> 
+                 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

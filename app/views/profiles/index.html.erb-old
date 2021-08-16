@@ -1,0 +1,61 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Profiles</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Gender</th>
+      <th>Birth date</th>
+      <th>City</th>
+      <th>Country</th>
+      <th>About</th>
+      <th>Marital status</th>
+      <th>Cut</th>
+      <th>Weight</th>
+      <th>Eyes</th>
+      <th>Hair</th>
+      <th>Sexual orientation</th>
+      <th>Occupation</th>
+      <th>Astrology</th>
+      <th>Region</th>
+      <th>Nationality</th>
+      <th>Purpose</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @profiles.each do |profile| %>
+      <tr>
+        <td><%= profile.first_name %></td>
+        <td><%= profile.last_name %></td>
+        <td><%= profile.gender %></td>
+        <td><%= profile.birth_date %></td>
+        <td><%= profile.city %></td>
+        <td><%= profile.country %></td>
+        <td><%= profile.about %></td>
+        <td><%= profile.marital_status %></td>
+        <td><%= profile.cut %></td>
+        <td><%= profile.weight %></td>
+        <td><%= profile.eyes %></td>
+        <td><%= profile.hair %></td>
+        <td><%= profile.sexual_orientation %></td>
+        <td><%= profile.occupation %></td>
+        <td><%= profile.astrology %></td>
+        <td><%= profile.region %></td>
+        <td><%= profile.nationality %></td>
+        <td><%= profile.purpose %></td>
+        <td><%= link_to 'Show', profile %></td>
+        <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
+        <td><%= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Profile', new_profile_path %>
