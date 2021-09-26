@@ -58,6 +58,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise', '~> 4.6', '>= 4.6.2'
 gem 'devise-i18n', '~> 1.6', '>= 1.6.2'
 gem 'bootstrap', '~> 5.1'
+gem 'cancancan', '~> 3.0', '>= 3.0.1'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.7'
 
 #gem 'sprockets-rails', '~> 3.2', '>= 3.2.1'
